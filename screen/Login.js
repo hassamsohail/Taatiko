@@ -1,238 +1,130 @@
-import React from 'react';
+import React from "react";
 import {
-  View,
-  Text,
   ScrollView,
-  Dimensions,
-  Image,
+  View,
   StyleSheet,
-  FlatList,
-  ImageBackground,
+  Text,
+  Image,
   Pressable,
-} from 'react-native';
-import {TextInput} from 'react-native-paper';
+} from "react-native";
+import  LinearGradient from "react-native-linear-gradient";
+// import { StatusBar } from "expo-status-bar";
+import { useNavigation } from "@react-navigation/native"; // Import the useNavigation hook
 
-export default function Login({navigation}) {
-  const [Email, setEmail] = React.useState('');
-  const [FullName, setFullName] = React.useState('');
+export default function Login() {
+  const navigation = useNavigation(); // Get navigation object
 
-  const [Password, setPassword] = React.useState('');
-  const [showPassword, setShowPassword] = React.useState(false);
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
   return (
-    <ScrollView>
-      <View
-        style={{
-          height: Dimensions.get('window').height,
-          backgroundColor: '#111111',
-        }}>
-        <View
-          style={{
-            width: 327,
-            alignSelf: 'center',
-          }}>
-          <View style={{height: 20}} />
-
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'flex-end',
-              alignItems: 'center',
-              width: '100%',
-              height: 40,
-            }}>
-            <Pressable
-              onPress={() => {
-                navigation.navigate('CreateAccount');
-              }}
-            >
-              <View
-                style={{
-                  alignItems: 'center',
-                  width: 40,
-                  height: 40,
-                  justifyContent: 'center',
-                  borderRadius: 12,
-                  backgroundColor: 'rgba(58, 58, 77, 0.3)',
-                }}>
-                <Image
-                  source={require('../assets/Cross.png')}
-                  style={{
-                    width: 24,
-                    height: 24,
-                  }}
-                />
-              </View>
-            </Pressable>
-          </View>
-          <View style={{height: 20}} />
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={{
+        flexGrow: 1,
+      }}
+    >
+      {/* <StatusBar style="dark" /> */}
+      <LinearGradient
+        colors={["#3D45D4", "#A65EEF"]}
+        start={{ x: 0, y: 1 }}
+        end={{ x: 1, y: 1 }}
+        style={styles.linearGradient}
+      >
+        <View style={styles.contentContainer}>
           <Text
             style={{
-              fontSize: 32,
-              fontWeight: '400',
-              color: '#fff',
-            }}>
-            Hello Mate
-          </Text>
-          <View style={{height: 5}} />
-
-          <Text
-            style={{
-              fontSize: 14,
-              fontWeight: '100',
-              color: '#A1A1AC',
-            }}>
-           Login to continue
-          </Text>
-
-          <View style={{height: 60}} />
-         
-       
-          <TextInput
-            label="Email Address"
-            value={Email}
-            onChangeText={Email => setEmail(Email)}
-            style={{
-              backgroundColor: 'rgba(58, 58, 77, 0.3)',
-              borderTopRightRadius: 10,
-              borderTopLeftRadius: 10,
-              borderRadius: 10,
+              fontSize: 40,
+              color: "#fff",
+              fontWeight: "bold",
+              textAlign: "center",
             }}
-            underlineColor="transparent" // Active border color
-            underlineColorAndroid="rgba(58, 58, 77, 0.3)"
-            selectionColor="#BD1515" // Set selection color
-            activeUnderlineColor="#BD1515"
-            outlineColor="rgba(58, 58, 77, 0.3)"
-            textColor="#fff"
-          />
-          <View style={{height: 15}} />
-          <TextInput
-            label="Password"
-            value={Password}
-            secureTextEntry={!showPassword}
-            right={
-              <TextInput.Icon
-                icon={({size, color}) => (
-                  // <Entypo
-                  //   name={showPassword ? 'eye-with-line' : 'eye'}
-                  //   size={size}
-                  //   color={color}
-                  // />
-                  <View></View>
-                )}
-                onPress={togglePasswordVisibility}
-              />
-            }
-            // right={<TextInput.Icon icon="eye" />}
-            onChangeText={Password => setPassword(Password)}
-            style={{
-              backgroundColor: 'rgba(58, 58, 77, 0.3)',
-              borderWidth: 1,
-              borderTopRightRadius: 10,
-              borderTopLeftRadius: 10,
-              borderRadius: 10,
-              borderColor: 'rgba(58, 58, 77, 0.3)',
-            }}
-            underlineColor="transparent" // Active border color
-            underlineColorAndroid="rgba(58, 58, 77, 0.3)"
-         selectionColor="#BD1515" // Set selection color
-            activeUnderlineColor="#BD1515"
-            outlineColor="rgba(58, 58, 77, 0.3)"
-            textColor="#fff"
-            underlineStyle={{
-              borderColor: '#fff',
-            }}
-          />
-          <View style={{height: 10}} />
-
-          <View
-          style={{
-            flexDirection:"row", justifyContent:"flex-end", alignItems:"center"
-          }}
           >
-             <Pressable
-            onPress={() => {
-              navigation.navigate('ForgetPassword');
-            }}>
-
-           
- <Text
-            style={{
-              fontSize: 14,
-              fontWeight: '400',
-              color: '#BD1515',
-            }}>
-          Forgot Password?
+            Sign In
           </Text>
-          </Pressable>
-          </View>
-          <View style={{height: 100}} />
+          <View
+            style={{
+              height: 15,
+            }}
+          />
           <Pressable
             style={{
-              width: 327,
+              width: "100%",
             }}
             onPress={() => {
-              navigation.navigate('Tab');
-            }}>
-            <ImageBackground
-              source={require('../assets/btn.png')}
+              navigation.navigate("Mainscreen");
+            }}
+          >
+            <Image
+              source={require("../assets/Fb.png")}
               style={{
-                width: '100%',
-                height: 56,
-
-                justifyContent: 'center',
-                alignItems: 'center',
-                alignSelf: 'center',
-              }}>
-              <Text
-                style={{
-                  fontSize: 14,
-                  color: '#fff',
-                  fontWeight: '500',
-                  textAlign: 'center',
-                }}>
-                Sign In
-              </Text>
-            </ImageBackground>
+                width: "100%",
+                alignSelf: "center",
+                height: 55,
+              }}
+              resizeMode="contain"
+            ></Image>
           </Pressable>
-        
-          <View style={{height: 20}} />
+
+          <View
+            style={{
+              height: 15,
+            }}
+          />
+
+          <Text
+            style={{
+              fontSize: 20,
+              color: "#fff",
+              fontWeight: "bold",
+              textAlign: "center",
+            }}
+          >
+            OR
+          </Text>
+          <View
+            style={{
+              height: 15,
+            }}
+          />
           <Pressable
+            style={{
+              width: "100%",
+            }}
             onPress={() => {
-              navigation.navigate('CreateAccount');
-            }}>
-            <View
+              navigation.navigate("Mainscreen");
+            }}
+          >
+            <Image
+              source={require("../assets/Go.png")}
               style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-              <Text
-                style={{
-                  fontSize: 14,
-                  color: '#fff',
-                  fontWeight: '600',
-                  textAlign: 'center',
-                }}>
-        Don’t have an Account?
-              </Text>
-              <Text
-                style={{
-                  fontSize: 14,
-                  color: '#BD1515',
-                  fontWeight: '600',
-                  textAlign: 'center',
-                  marginLeft: 5,
-                }}>
-                Sign Up
-              </Text>
-            </View>
+                width: "100%",
+                alignSelf: "center",
+                height: 61,
+              }}
+              resizeMode="contain"
+              // Add onPress to navigate when the image is pressed
+            ></Image>
           </Pressable>
         </View>
-      </View>
+      </LinearGradient>
     </ScrollView>
   );
 }
+
+const styles = StyleSheet.create({
+  linearGradient: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    // position: "relative",
+  },
+  contentContainer: {
+    alignItems: "center",
+    width: "90%",
+    height: 300,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: "rgba(225, 225, 225, 0.21)",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
